@@ -8,8 +8,14 @@ export class CreateProceduresTable1584959890580 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'bigint',
-                        isPrimary: true
+                        type: 'int',
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: 'increment'
+                    },
+                    {
+                        name: 'title',
+                        type: 'varchar'
                     },
                     {
                         name: 'code',
@@ -17,11 +23,7 @@ export class CreateProceduresTable1584959890580 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: 'title',
-                        type: 'varchar'
-                    },
-                    {
-                        name: 'cost',
+                        name: 'price',
                         type: 'decimal',
                         precision: 5,
                         scale: 2

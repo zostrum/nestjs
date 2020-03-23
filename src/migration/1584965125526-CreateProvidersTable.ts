@@ -9,12 +9,13 @@ export class CreateProvidersTable1584965125526 implements MigrationInterface {
                     {
                         name: 'id',
                         type: 'int',
-                        isPrimary: true
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: 'increment'
                     },
                     {
                         name: 'name',
                         type: 'varchar',
-                        length: '32'
                     }
                 ]
             }),

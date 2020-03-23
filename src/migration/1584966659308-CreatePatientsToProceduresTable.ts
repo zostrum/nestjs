@@ -75,21 +75,6 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        const table = await queryRunner.getTable('patients_to_procedures');
-        // Drop FK
-        await queryRunner.dropForeignKey(
-            'providers_to_procedures',
-            table.foreignKeys.find(fk => fk.columnNames.indexOf('patient_id') !== -1)
-        );
-        await queryRunner.dropForeignKey(
-            'providers_to_procedures',
-            table.foreignKeys.find(fk => fk.columnNames.indexOf('provider_id') !== -1)
-        );
-        await queryRunner.dropForeignKey(
-            'providers_to_procedures',
-            table.foreignKeys.find(fk => fk.columnNames.indexOf('procedure_id') !== -1)
-        );
-        // Drop table
-        await queryRunner.dropTable('providers_to_procedures');
+        await queryRunner.dropTable('patients_to_procedures');
     }
 }

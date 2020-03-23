@@ -9,10 +9,12 @@ export class CreateStatesTable1584964153723 implements MigrationInterface {
                     {
                         name: 'id',
                         type: 'int',
-                        isPrimary: true
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: 'increment'
                     },
                     {
-                        name: 'state',
+                        name: 'title',
                         type: 'varchar',
                         length: '32'
                     }

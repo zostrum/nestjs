@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 // import { IProcedure } from './interfaces/procedure.interface';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Procedure } from './procedure.entity';
+import { Procedure } from '../../shared/entity/procedure.entity';
 import { Repository } from 'typeorm';
-import { CreateProcedureDto } from './dto/create-procedure.dto';
+// import { CreateProcedureDto } from './dto/create-procedure.dto';
 
 @Injectable()
 export class ProceduresService {
@@ -32,13 +32,13 @@ export class ProceduresService {
     }
 
     insertProcedures(
-        createProcedureDto: CreateProcedureDto
-    ): Promise<Procedure> {
-        const procedure = new Procedure();
-        procedure.name = createProcedureDto.name;
-        procedure.code = createProcedureDto.code;
-        procedure.price = createProcedureDto.price;
+        // createProcedureDto: CreateProcedureDto
+    ): any {
+        // const procedure = new Procedure();
+        // procedure.name = createProcedureDto.name;
+        // procedure.code = createProcedureDto.code;
+        // procedure.price = createProcedureDto.price;
 
-        return this.proceduresRepository.save(procedure);
+        // return this.proceduresRepository.save(procedure);
     }
 }

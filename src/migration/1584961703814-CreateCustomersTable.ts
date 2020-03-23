@@ -9,7 +9,9 @@ export class CreateCustomersTable1584961703814 implements MigrationInterface {
                     {
                         name: 'id',
                         type: 'int',
-                        isPrimary: true
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: 'increment'
                     },
                     {
                         name: 'first_name',
@@ -28,7 +30,7 @@ export class CreateCustomersTable1584961703814 implements MigrationInterface {
                     {
                         name: 'phone',
                         type: 'varchar',
-                        length: '14'
+                        length: '32'
                     },
                     {
                         name: 'address1',
@@ -49,7 +51,8 @@ export class CreateCustomersTable1584961703814 implements MigrationInterface {
                     },
                     {
                         name: 'zip',
-                        type: 'int'
+                        type: 'varchar',
+                        length: '16'
                     },
                     {
                         name: 'isGarantor',
