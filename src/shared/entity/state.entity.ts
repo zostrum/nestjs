@@ -1,4 +1,5 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { Patient } from './patient.entity';
 
 @Entity('states', { schema: 'nestjs' })
 export class State {
@@ -11,4 +12,5 @@ export class State {
 
     @Column('varchar', { name: 'title', length: 32 })
     public title!: string;
+
 }

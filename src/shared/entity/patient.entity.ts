@@ -1,7 +1,9 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToMany, JoinTable, OneToOne, OneToMany, JoinColumn } from 'typeorm';
+import { Procedure } from './procedure.entity';
+import { State } from './state.entity';
 
-@Entity('customers', { schema: 'nestjs' })
-export class Customer {
+@Entity('patients', { schema: 'nestjs' })
+export class Patient {
     constructor(
         firstName: string,
         lastName: string,
@@ -58,4 +60,22 @@ export class Customer {
 
     @Column('tinyint', { name: 'isGarantor' })
     public isGarantor!: number;
+
+    @ManyToMany(type => Procedure)
+    @JoinTable({
+        name: 'patients_to_procedures', // table name for the junction table of this relation
+        joinColumn: {
+            name: 'patient_id',
+            referencedColumnName: 'id'
+        },
+        inverseJoinColumn: {
+            name: 'procedure_id',
+            referencedColumnName: 'id'
+        }
+    })
+    procedures: Procedure[];
+
+    @OneToOne(type => State, { eager: false })
+    @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
+    state: State;
 }

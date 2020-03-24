@@ -1,14 +1,14 @@
 import { Connection } from 'typeorm';
-import { Customer } from '../shared/entity/custom.entity';
+import { Patient } from '../shared/entity/patient.entity';
 import { Factory, Seeder } from 'typeorm-seeding';
 import faker = require('faker');
 
-export default class CreateCustomers implements Seeder {
+export default class CreatePatients implements Seeder {
     public async run(factory: Factory, connection: Connection): Promise<any> {
-        let customers = <Customer[]>[];
+        let customers = <Patient[]>[];
         for (let index = 0; index < 100; index++) {
             customers.push(
-                new Customer(
+                new Patient(
                     faker.name.firstName(),
                     faker.name.lastName(),
                     faker.image.avatar(),
@@ -18,29 +18,17 @@ export default class CreateCustomers implements Seeder {
                         ? faker.address.streetAddress() + ', ' + faker.address.secondaryAddress()
                         : '',
                     faker.address.city(),
-                    faker.random.number(25),
+                    faker.random.number(10),
                     faker.address.zipCode(),
                     faker.random.number(1)
                 )
             );
-
-            /* firstName: string,
-        lastName: string,
-        photo: string,
-        phone: string,
-        address1: string,
-        address2: string,
-        city: string,
-        stateId: number,
-
-        zip: number,
-        isGarantor: number */
         }
 
         await connection
             .createQueryBuilder()
             .insert()
-            .into(Customer)
+            .into(Patient)
             .values(customers)
             .execute();
     }

@@ -5,9 +5,17 @@ import { ProceduresModule } from './modules/procedures/procedures.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { StatesModule } from './modules/states/states.module';
+import { PatientsModule } from './modules/patients/patients.module';
+import { RecordsModule } from './modules/records/records.module';
 
 @Module({
-    imports: [StatesModule, ProceduresModule, TypeOrmModule.forRoot()],
+    imports: [
+        StatesModule,
+        RecordsModule,
+        ProceduresModule,
+        PatientsModule,
+        TypeOrmModule.forRoot({ autoLoadEntities: true })
+    ],
     controllers: [AppController],
     providers: [AppService]
 })

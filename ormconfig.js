@@ -17,5 +17,6 @@ module.exports = {
         migrationsDir: 'src/migration'
     },
     seeds: ['dist/seeds/**/*.seed.js'],
-    factories: ['src/factories/**/*.factory.ts']
+    factories: ['src/factories/**/*.factory.ts'],
+    logging: 'all'
 };

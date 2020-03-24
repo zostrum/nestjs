@@ -4,8 +4,15 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.createTable(
             new Table({
-                name: 'patients_to_procedures',
+                name: 'records',
                 columns: [
+                    {
+                        name: 'id',
+                        type: 'int',
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: 'increment'
+                    },
                     {
                         name: 'patient_id',
                         type: 'int'
@@ -32,7 +39,7 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
                     },
                     {
                         name: 'date',
-                        type: 'datetime'
+                        type: 'timestamp'
                     },
                     {
                         name: 'procedure_id',
@@ -44,17 +51,17 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
         );
 
         await queryRunner.createForeignKey(
-            'patients_to_procedures',
+            'records',
             new TableForeignKey({
                 columnNames: ['patient_id'],
                 referencedColumnNames: ['id'],
-                referencedTableName: 'providers',
+                referencedTableName: 'patients',
                 onDelete: 'CASCADE'
             })
         );
 
         await queryRunner.createForeignKey(
-            'patients_to_procedures',
+            'records',
             new TableForeignKey({
                 columnNames: ['provider_id'],
                 referencedColumnNames: ['id'],
@@ -64,7 +71,7 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
         );
 
         await queryRunner.createForeignKey(
-            'patients_to_procedures',
+            'records',
             new TableForeignKey({
                 columnNames: ['procedure_id'],
                 referencedColumnNames: ['id'],
@@ -75,6 +82,6 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.dropTable('patients_to_procedures');
+        await queryRunner.dropTable('records');
     }
 }
