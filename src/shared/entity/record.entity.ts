@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Patient } from './patient.entity';
+import { Provider } from './provider.entity';
+import { Procedure } from './procedure.entity';
 
 @Entity({ name: 'records' })
 export class Record {
@@ -44,9 +46,22 @@ export class Record {
     @Column('text', { name: 'notes' })
     public notes: string;
 
-    @Column('timestamp', { name: 'date' })
+    @Column('datetime', { name: 'date' })
     public date: string;
 
     @Column('int', { name: 'procedure_id' })
     public procedure_id!: number;
+
+
+    @OneToOne(type => Patient, { eager: false })
+    @JoinColumn({ name: 'patient_id', referencedColumnName: 'id' })
+    patient: Patient;
+
+    @OneToOne(type => Provider, { eager: false })
+    @JoinColumn({ name: 'provider_id', referencedColumnName: 'id' })
+    provider: Provider;
+
+    @OneToOne(type => Procedure, { eager: false })
+    @JoinColumn({ name: 'procedure_id', referencedColumnName: 'id' })
+    procedure: Procedure;
 }

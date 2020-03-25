@@ -39,7 +39,7 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
                     },
                     {
                         name: 'date',
-                        type: 'timestamp'
+                        type: 'datetime'
                     },
                     {
                         name: 'procedure_id',

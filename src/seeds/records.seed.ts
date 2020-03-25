@@ -6,7 +6,7 @@ import faker = require('faker');
 export default class CreatePatients implements Seeder {
     public async run(factory: Factory, connection: Connection): Promise<any> {
         let records = <Record[]>[];
-        for (let index = 0; index < 100; index++) {
+        for (let index = 0; index < 200; index++) {
             records.push(
                 new Record(
                     faker.random.number(99) + 1,
@@ -30,7 +30,7 @@ export default class CreatePatients implements Seeder {
     }
 
     public getDate(): string {
-        const now = Date.now() + faker.random.number(-10000, 10000) * 1e5;
+        const now = Date.now() + (Math.random() < 0.5 ? -1 : 1) * faker.random.number(9) * 1e8;
         return new Date(now).toISOString().slice(0, -5);
     }
 }

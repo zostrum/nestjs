@@ -20,7 +20,15 @@ export class RecordsService {
 
     async getTodayRecords(): Promise<Record[]> {
         const range = this.getTodayRange();
-        return await this.recordsRepository.find({ date: Between(range.yesterday, range.today) });
+        return await this.recordsRepository.find( 
+            { 
+                where: {
+                    date: Between(range.yesterday, range.today)
+                },
+                relations: ['patient', 'provider', 'procedure']
+            }
+        );
+            // date: Between(range.yesterday, range.today)}
     }
 
     private getTodayRange(): { yesterday; today } {
