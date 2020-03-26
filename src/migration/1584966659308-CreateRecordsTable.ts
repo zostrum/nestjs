@@ -50,7 +50,7 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
             true
         );
 
-        await queryRunner.createForeignKey(
+        /* await queryRunner.createForeignKey(
             'records',
             new TableForeignKey({
                 columnNames: ['patient_id'],
@@ -78,7 +78,7 @@ export class CreatePatientsToProceduresTable1584966659308 implements MigrationIn
                 referencedTableName: 'procedures',
                 onDelete: 'CASCADE'
             })
-        );
+        ); */
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {

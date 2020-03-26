@@ -20,7 +20,7 @@ export class CreateProvidersToProceduresTable1584965227046 implements MigrationI
             true
         );
 
-        await queryRunner.createForeignKey(
+       /*  await queryRunner.createForeignKey(
             'providers_to_procedures',
             new TableForeignKey({
                 columnNames: ['provider_id'],
@@ -38,7 +38,7 @@ export class CreateProvidersToProceduresTable1584965227046 implements MigrationI
                  referencedTableName: 'procedures',
                  onDelete: 'CASCADE'
              })
-         );
+         ); */
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {

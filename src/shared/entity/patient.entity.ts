@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToMany, JoinTable, OneToOne, OneToMany, JoinColumn } from 'typeorm';
 import { Procedure } from './procedure.entity';
 import { State } from './state.entity';
+import { Record } from './record.entity';
 
 @Entity('patients', { schema: 'nestjs' })
 export class Patient {
@@ -63,7 +64,7 @@ export class Patient {
 
     @ManyToMany(type => Procedure)
     @JoinTable({
-        name: 'patients_to_procedures', // table name for the junction table of this relation
+        name: 'records',
         joinColumn: {
             name: 'patient_id',
             referencedColumnName: 'id'
@@ -74,6 +75,15 @@ export class Patient {
         }
     })
     procedures: Procedure[];
+
+    @OneToMany(
+        type => Record,
+        record => record.patient
+    )
+    @JoinTable({
+        name: "records"
+    })
+    records: Record[];
 
     @OneToOne(type => State, { eager: false })
     @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
